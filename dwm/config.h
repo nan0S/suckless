@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int gappx	    = 5;	/* gap size */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -67,9 +67,6 @@ static const char *browsercmd[] = { "firefox", NULL };
 static const char *voldowncmd[] = { "amixer", "sset", "Master", "5%-", NULL };
 static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
 static const char *voltogglecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
-// static const char *voldowncmd[] = { "pactl", "set-sink-volume", "0", "-2%", NULL };
-// static const char *volupcmd[] = { "pactl", "set-sink-volume", "0", "+2%", NULL };
-// static const char *voltogglecmd[] = { "pactl", "set-sink-mute", "0", "toggle", NULL };
 /* brightness controls */
 static const char *brightnessdowncmd[] = { "light", "-U", "15", NULL };
 static const char *brightnessupcmd[] = { "light", "-A", "15", NULL };
