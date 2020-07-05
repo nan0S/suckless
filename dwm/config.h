@@ -105,6 +105,7 @@ static Key keys[] = {
 	{  MODKEY,            XK_j,          focusstack,      {.i   =   +1              }   },
 	{  MODKEY,            XK_k,          focusstack,      {.i   =   -1              }   },
 	{  MODKEY,            XK_s,          swapfocus,       {.i   =   -1              }   },
+	{  MODKEY,            XK_y,          swapfocus,       {.i   =   -1              }   },
 	{  MODKEY,            XK_semicolon,  swapfocus,       {.i   =   -1              }   },
 	{  MODKEY,            XK_i,          incnmaster,      {.i   =   +1              }   },
 	{  MODKEY,            XK_d,          incnmaster,      {.i   =   -1              }   },
