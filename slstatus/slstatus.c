@@ -45,15 +45,54 @@ usage(void)
 	die("usage: %s [-s]", argv0);
 }
 
+static void
+refresh(const int signo)
+{
+	(void)signo;
+}
+
+static char status[MAXLEN];
+static size_t i, len;
+static int sflag, ret;
+const char* res;
+
+static void
+update_bar()
+{
+	puts("UPDATING");
+	fflush(stdout);
+	size_t len;
+	status[0] = '\0';
+	for (i = len = 0; i < LEN(args); i++) {
+		if (!(res = args[i].func(args[i].args))) {
+			res = unknown_str;
+		}
+		if ((ret = esnprintf(status + len, sizeof(status) - len,
+						args[i].fmt, res)) < 0) {
+			break;
+		}
+		len += ret;
+	}
+
+	if (sflag) {
+		puts(status);
+		fflush(stdout);
+		if (ferror(stdout))
+			die("puts:");
+	} else {
+		if (XStoreName(dpy, DefaultRootWindow(dpy), status)
+				   < 0) {
+			die("XStoreName: Allocation failed");
+		}
+		XFlush(dpy);
+	}
+}
+
 int
 main(int argc, char *argv[])
 {
-	struct sigaction act;
+	struct sigaction act, hup;
 	struct timespec start, current, diff, intspec, wait;
-	size_t i, len;
-	int sflag, ret;
-	char status[MAXLEN];
-	const char *res;
 
 	sflag = 0;
 	ARGBEGIN {
@@ -73,6 +112,10 @@ main(int argc, char *argv[])
 	sigaction(SIGINT,  &act, NULL);
 	sigaction(SIGTERM, &act, NULL);
 
+	memset(&hup, 0, sizeof(hup));
+	hup.sa_handler = refresh;
+	sigaction(SIGHUP, &hup, NULL);
+
 	if (!sflag && !(dpy = XOpenDisplay(NULL))) {
 		die("XOpenDisplay: Failed to open display");
 	}
@@ -81,31 +124,8 @@ main(int argc, char *argv[])
 		if (clock_gettime(CLOCK_MONOTONIC, &start) < 0) {
 			die("clock_gettime:");
 		}
-
-		status[0] = '\0';
-		for (i = len = 0; i < LEN(args); i++) {
-			if (!(res = args[i].func(args[i].args))) {
-				res = unknown_str;
-			}
-			if ((ret = esnprintf(status + len, sizeof(status) - len,
-			                    args[i].fmt, res)) < 0) {
-				break;
-			}
-			len += ret;
-		}
-
-		if (sflag) {
-			puts(status);
-			fflush(stdout);
-			if (ferror(stdout))
-				die("puts:");
-		} else {
-			if (XStoreName(dpy, DefaultRootWindow(dpy), status)
-                            < 0) {
-				die("XStoreName: Allocation failed");
-			}
-			XFlush(dpy);
-		}
+		
+		update_bar();
 
 		if (!done) {
 			if (clock_gettime(CLOCK_MONOTONIC, &current) < 0) {
