@@ -1,1 +1,2 @@
+# suckless
 My suckless setup.
