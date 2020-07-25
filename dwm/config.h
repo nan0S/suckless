@@ -68,14 +68,17 @@ static const char *termcmd[]  = { "st", NULL };
 static const char *browsercmd[] = { "firefox", NULL };
 /* volume controls */
 // static const char *voldowncmd[] = { "amixer", "sset", "Master", "5%-", NULL };
-static const char *voldowncmd[] = { "pactl", "set-sink-volume", "1", "-5%", NULL };
+// static const char *voldowncmd[] = { "pactl", "set-sink-volume", "1", "-5%;", NULL };
+static const char *voldowncmd[] = { "volctl", "--decrease", NULL };
 // static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
-static const char *volupcmd[] = { "pactl", "set-sink-volume", "1", "+5%", NULL };
+// static const char *volupcmd[] = { "pactl", "set-sink-volume", "1", "+5%;", NULL };
+static const char *volupcmd[] = { "volctl", "--increase", NULL };
 // static const char *voltogglecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
-static const char *voltogglecmd[] = { "pactl", "set-sink-mute", "1", "toggle", NULL };
+// static const char *voltogglecmd[] = { "pactl", "set-sink-mute", "1", "toggle;", NULL };
+static const char *voltogglecmd[] = { "volctl", "--toggle", NULL };
 /* brightness controls */
-static const char *brightnessdowncmd[] = { "light", "-U", "40", NULL };
-static const char *brightnessupcmd[] = { "light", "-A", "40", NULL };
+static const char *brightnessdowncmd[] = { "light", "-U", "10", NULL };
+static const char *brightnessupcmd[] = { "light", "-A", "10", NULL };
 /* trackpoint and touchpad */ 
 static const char *touchpadcmd[] = { "touchpad-toggle", NULL };
 static const char *trackpointcmd[] = { "trackpoint-toggle", NULL };
@@ -145,9 +148,12 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* volume controll */
+	// {   0,          XF86XK_AudioRaiseVolume,   spawn,      {.v  =  refbarcmd           }  },
 	{   0,          XF86XK_AudioRaiseVolume,   spawn,      {.v  =  volupcmd           }  },
 	{   0,          XF86XK_AudioMute,          spawn,      {.v  =  voltogglecmd       }  },
+	// {   0,          XF86XK_AudioMute,          spawn,      {.v  =  refbarcmd       }  },
 	{   0,          XF86XK_AudioLowerVolume,   spawn,      {.v  =  voldowncmd         }  },
+	// {   0,          XF86XK_AudioLowerVolume,   spawn,      {.v  =  refbarcmd         }  },
 	/*  touchpad    and                        trackpoint  */                            
 	{   0,          XF86XK_AudioMicMute,       spawn,      {.v  =  touchpadcmd        }  },
 	{   0,          XF86XK_Tools,              spawn,      {.v  =  trackpointcmd      }  },
