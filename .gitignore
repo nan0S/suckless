@@ -2,3 +2,7 @@
 nohup.out
 compile_commands.json
 *.o
+dwm
+stest
+dmenu
+slstatus
