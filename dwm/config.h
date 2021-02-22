@@ -7,8 +7,10 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel	    = 0;
-static const char *fonts[]          = { "Hermit:size=10" };
-static const char dmenufont[]       = "Hermit:size=10";
+static const char *fonts[] = 	   { "Determination Mono:size=11" };
+static const char *dmenufont[] = { "Determination Mono:size=11" };
+// static const char *fonts[]          = { "Hermit:size=10" };
+// static const char dmenufont[]       = "Hermit:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -86,9 +88,11 @@ static const char *trackpointcmd[] = { "trackpoint-toggle", NULL };
 static const char *xkillcmd[] = { "xkill", NULL };
 static const char *bluetoothcmd[] = { "blueman-manager", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
-static const char *discordcmd[] = { "discord-ptb", NULL };
+static const char *discordcmd[] = { "discord", NULL };
 static const char *pavucontrolcmd[] = { "pavucontrol", NULL };
-static const char *screenshotcmd[] = { "deepin-screen-recorder", NULL };
+static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
+static const char *terminatecmd[] = { "shutdown", "now", NULL };
+static const char *msteamscmd[] = { "teams", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -102,6 +106,8 @@ static Key keys[] = {
 	{  MODKEY|ShiftMask,  XK_s,          spawn,           {.v   =   spotifycmd      }   },
 	{  MODKEY|ShiftMask,  XK_d,          spawn,           {.v   =   discordcmd      }   },
 	{  MODKEY|ShiftMask,  XK_p,          spawn,           {.v   =   pavucontrolcmd  }   },
+	{  MODKEY|ShiftMask,  XK_t,          spawn,           {.v   =   terminatecmd    }   },
+	{  MODKEY|ShiftMask,  XK_v,          spawn,           {.v   =   msteamscmd      }   },
 	{  MODKEY,            XK_x,          spawn,           {.v   =   xkillcmd        }   },
 	{  0,                 XK_Print,      spawn,           {.v   =   screenshotcmd   }   },
 	{  MODKEY,            XK_b,          togglebar,       {0}   },                      
@@ -126,7 +132,6 @@ static Key keys[] = {
 	{  MODKEY,            XK_u,          setlayout,       {.v   =   &layouts[4]}    },  
 	{  MODKEY,            XK_o,          setlayout,       {.v   =   &layouts[5]}    },  
 	{  MODKEY,            XK_c,          setlayout,       {.v   =   &layouts[6]}    },  
-	{  MODKEY,            XK_space,      setlayout,       {0}   },                      
 	{  MODKEY|ShiftMask,  XK_space,      togglefloating,  {0}   },                      
 	{  MODKEY,            XK_0,          view,            {.ui  =   ~0              }   },
 	{  MODKEY|ShiftMask,  XK_0,          tag,             {.ui  =   ~0              }   },

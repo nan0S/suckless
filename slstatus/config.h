@@ -64,12 +64,12 @@ static const char unknown_str[] = "n/a";
 
 static const struct arg args[] = {
 	/* function 	format	argument */
-	{ wifi_essid, 	"  ^c#46A6D0^WIFI %3s ", "wlp3s0" },
-	{ wifi_perc, 	"%2s%% ^c#FFFFFF^| ", "wlp3s0" },
+	{ wifi_essid, 	"  ^c#46A6D0^WIFI %3s ", "wlp5s0" },
+	{ wifi_perc, 	"%2s%% ^c#FFFFFF^| ", "wlp5s0" },
 	{ run_command, 	"^c#3599A0^VOL %3s%% ^c#FFFFFF^| ", "amixer sget Master | egrep -om1 \"\\[[[:digit:]]{1,3}\" | tr -d [" },
 	{ cpu_perc, 	"^c#F4DFA0^CPU %2s%% ^c#FFFFFF^| ", NULL  },
 	{ ram_perc, 	"^c#F4DFA0^RAM %2s%% ^c#FFFFFF^| ", NULL  },
-	{ battery_perc, "^c#F39C7B^BAT %2s%%/", "BAT0" },
-	{ battery_perc, "%2s%% ^c#FFFFFF^| ", "BAT1" }, 	
+	{ battery_perc, "^c#F39C7B^BAT %2s%% ^c#FFFFFF^| ", "BAT0" },
+	// { battery_perc, "%2s%% ^c#FFFFFF^| ", "BAT1" }, 	
 	{ datetime, 	"^c#F04250^%15s  ", "%a %b %d %T" },
 };
