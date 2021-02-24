@@ -5,12 +5,13 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "Determination Mono:pixelsize=18:antialias=true:autohint=true";
+// static char *font = "Determination Mono:pixelsize=18:antialias=true:autohint=true";
 // static char *font = "Hermit:pixelsize=15:antialias=true:autohint=true";
 // static char *font = "mono:pixelsize=17:antialias=true:autohint=true";
-// static char *font = "Source Code Pro:pixelsize=17:antialias=true:autohint=true";
+static char *font = "Source Code Pro-Bold:pixelsize=18:antialias=true:autohint=true";
 // static char *font2[] = { "mono:pixelsize=17:antialias=true:autohint=true" };
-static char *font2[] = { "Determination Mono:pixelsize=18:antialias=true:autohint=true" };
+// static char *font2[] = { "Determination Mono:pixelsize=18:antialias=true:autohint=true" };
+static char *font2[] = { "Source Code Pro-Bold:pixelsize=18:antialias=true:autohint=true" };
 // static char *font2[] = { "Hermit:pixelsize=15:antialias=true:autohint=true" };
 // static char *font2[] = { "JoyPixels:pixelsize=14:antialias=true:autohint=true" };
 static int borderpx = 2;
