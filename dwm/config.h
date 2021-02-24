@@ -94,6 +94,7 @@ static const char *discordcmd[] = { "discord", NULL };
 static const char *pavucontrolcmd[] = { "pavucontrol", NULL };
 static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
 static const char *terminatecmd[] = { "shutdown", "now", NULL };
+static const char *restartcmd[] = { "shutdown", "-r", "now", NULL };
 static const char *msteamscmd[] = { "teams", NULL };
 
 #include <X11/XF86keysym.h>
@@ -109,6 +110,7 @@ static Key keys[] = {
 	{  MODKEY|ShiftMask,  XK_d,          spawn,           {.v   =   discordcmd      }   },
 	{  MODKEY|ShiftMask,  XK_p,          spawn,           {.v   =   pavucontrolcmd  }   },
 	{  MODKEY|ShiftMask,  XK_t,          spawn,           {.v   =   terminatecmd    }   },
+	{  MODKEY|ShiftMask,  XK_r,          spawn,           {.v   =   restartcmd      }   },
 	{  MODKEY|ShiftMask,  XK_v,          spawn,           {.v   =   msteamscmd      }   },
 	{  MODKEY,            XK_x,          spawn,           {.v   =   xkillcmd        }   },
 	{  0,                 XK_Print,      spawn,           {.v   =   screenshotcmd   }   },
