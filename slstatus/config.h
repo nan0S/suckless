@@ -63,8 +63,8 @@ static const char unknown_str[] = "...";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 
-static const char eth_dev[] = "enp4s0";
-static const char wifi_dev[] = "wlp5s0";
+static const char eth_dev[] = "enp0s25";
+static const char wifi_dev[] = "wlp3s0";
 
 static const struct arg args[] = {
 	/* function 	format	argument */
@@ -74,7 +74,7 @@ static const struct arg args[] = {
 	{ run_command, "^c#3599A0^VOL %3s%% ^c#FFFFFF^| ", "amixer sget Master | egrep -om1 \"\\[[[:digit:]]{1,3}\" | tr -d [" },
 	{ cpu_perc, "^c#F4DFA0^CPU %2s%% ^c#FFFFFF^| ", NULL  },
 	{ ram_perc, "^c#F4DFA0^RAM %2s%% ^c#FFFFFF^| ", NULL  },
-	{ battery_perc, "^c#F39C7B^BAT %2s%% ^c#FFFFFF^| ", "BAT0" },
-	// { battery_perc, "%2s%% ^c#FFFFFF^| ", "BAT1" },
+	{ battery_perc, "^c#F39C7B^BAT %2s%%/", "BAT0" },
+	{ battery_perc, "%2s%% ^c#FFFFFF^| ", "BAT1" },
 	{ datetime, "^c#F04250^%15s  ", "%a %b %d %T" },
 };
