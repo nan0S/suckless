@@ -71,7 +71,7 @@ static const struct arg args[] = {
 	{ ipv4, "  ^c#46CDD0^ETH %s ^c#FFFFFF^| ", eth_dev },
 	{ wifi_essid, "^c#46A6D0^WIFI %3s ", wifi_dev },
 	{ wifi_perc, "%2s%% ^c#FFFFFF^| ", wifi_dev },
-	{ run_command, "^c#3599A0^VOL %3s%% ^c#FFFFFF^| ", "amixer sget Master | egrep -om1 \"\\[[[:digit:]]{1,3}\" | tr -d [" },
+	{ run_command, "^c#3599A0^VOL %3s%% ^c#FFFFFF^| ", "pamixer --get-volume" },
 	{ cpu_perc, "^c#F4DFA0^CPU %2s%% ^c#FFFFFF^| ", NULL  },
 	{ ram_perc, "^c#F4DFA0^RAM %2s%% ^c#FFFFFF^| ", NULL  },
 	{ battery_perc, "^c#F39C7B^BAT %2s%%/", "BAT0" },
