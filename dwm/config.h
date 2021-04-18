@@ -9,10 +9,6 @@ static const int topbar             = 1;        /* 0 means bottom bar */
 static const int focusonwheel	    = 0;
 static const char *fonts[] = 	   { "Source Code Pro-Bold:size=11" };
 static const char *dmenufont[] = { "Source Code Pro-Bold:size=11" };
-// static const char *fonts[] = 	   { "Determination Mono:size=11" };
-// static const char *dmenufont[] = { "Determination Mono:size=11" };
-// static const char *fonts[]          = { "Hermit:size=10" };
-// static const char dmenufont[]       = "Hermit:size=10";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -69,16 +65,10 @@ static const Layout layouts[] = {
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[]  = { "st", NULL };
-static const char *browsercmd[] = { "firefox", NULL };
+static const char *browsercmd[] = { "brave", NULL };
 /* volume controls */
-// static const char *voldowncmd[] = { "amixer", "sset", "Master", "5%-", NULL };
-// static const char *voldowncmd[] = { "pactl", "set-sink-volume", "1", "-5%;", NULL };
 static const char *voldowncmd[] = { "volctl", "--decrease", NULL };
-// static const char *volupcmd[] = { "amixer", "sset", "Master", "5%+", NULL };
-// static const char *volupcmd[] = { "pactl", "set-sink-volume", "1", "+5%;", NULL };
 static const char *volupcmd[] = { "volctl", "--increase", NULL };
-// static const char *voltogglecmd[] = { "amixer", "sset", "Master", "toggle", NULL };
-// static const char *voltogglecmd[] = { "pactl", "set-sink-mute", "1", "toggle;", NULL };
 static const char *voltogglecmd[] = { "volctl", "--toggle", NULL };
 /* brightness controls */
 static const char *brightnessdowncmd[] = { "light", "-U", "10", NULL };
@@ -157,12 +147,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 	/* volume controll */
-	// {   0,          XF86XK_AudioRaiseVolume,   spawn,      {.v  =  refbarcmd           }  },
 	{   0,          XF86XK_AudioRaiseVolume,   spawn,      {.v  =  volupcmd           }  },
 	{   0,          XF86XK_AudioMute,          spawn,      {.v  =  voltogglecmd       }  },
-	// {   0,          XF86XK_AudioMute,          spawn,      {.v  =  refbarcmd       }  },
 	{   0,          XF86XK_AudioLowerVolume,   spawn,      {.v  =  voldowncmd         }  },
-	// {   0,          XF86XK_AudioLowerVolume,   spawn,      {.v  =  refbarcmd         }  },
 	/*  touchpad    and                        trackpoint  */                            
 	{   0,          XF86XK_AudioMicMute,       spawn,      {.v  =  touchpadcmd        }  },
 	{   0,          XF86XK_Tools,              spawn,      {.v  =  trackpointcmd      }  },
