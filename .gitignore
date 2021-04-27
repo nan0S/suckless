@@ -8,13 +8,9 @@ nohup.out
 
 dmenu/dmenu
 dmenu/stest
-dmenu/config.h
 
 dwm/dwm
-dwm/config.h
 
 slstatus/slstatus
-slstatus/config.h
 
 st/st
-st/config.h
