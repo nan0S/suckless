@@ -4,7 +4,8 @@
 const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
-static const char unknown_str[] = "n/a";
+// static const char unknown_str[] = "n/a";
+static const char unknown_str[] = "...";
 
 /* maximum output string length */
 #define MAXLEN 2048
@@ -61,7 +62,19 @@ static const char unknown_str[] = "n/a";
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
+
+static const char eth_dev[] = "enp4s0";
+static const char wifi_dev[] = "wlp3s0";
+
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	/* function 	format	argument */
+	{ ipv4, "  ^c#46CDD0^ETH %s ^c#FFFFFF^| ", eth_dev },
+	{ wifi_essid, "^c#46A6D0^WIFI %3s ", wifi_dev },
+	{ wifi_perc, "%2s%% ^c#FFFFFF^| ", wifi_dev },
+	{ run_command, "^c#3599A0^VOL %4s%% ^c#FFFFFF^| ", "volctl --get" },
+	{ cpu_perc, "^c#F4DFA0^CPU %2s%% ^c#FFFFFF^| ", NULL  },
+	{ ram_perc, "^c#F4DFA0^RAM %2s%% ^c#FFFFFF^| ", NULL  },
+	{ battery_perc, "^c#F39C7B^BAT %2s%% ^c#FFFFFF^| ", "BAT0" },
+	{ datetime, "^c#F04250^%15s  ", "%b %d (%a) %T" },
 };
+

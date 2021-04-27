@@ -59,8 +59,6 @@ const char* res;
 static void
 update_bar()
 {
-	puts("UPDATING");
-	fflush(stdout);
 	size_t len;
 	status[0] = '\0';
 	for (i = len = 0; i < LEN(args); i++) {
