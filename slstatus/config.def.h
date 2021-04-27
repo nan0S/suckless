@@ -64,7 +64,7 @@ static const char unknown_str[] = "...";
  */
 
 static const char eth_dev[] = "enp4s0";
-static const char wifi_dev[] = "wlp3s0";
+static const char wifi_dev[] = "wlp5s0";
 
 static const struct arg args[] = {
 	/* function 	format	argument */
