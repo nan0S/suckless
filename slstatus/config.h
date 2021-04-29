@@ -85,9 +85,9 @@ static const struct arg args[] = {
 	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL },
 	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL },
 	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0"},
-	{ battery_perc, 							"%2s%%" 		"/", 		"BAT0" },
+	{ battery_perc, 							"%s%%" 			"/", 		"BAT0" },
 	{ battery_state, 							"%s", 						"BAT1"},
-	{ battery_perc, 							"%2s%%" 		SUFFIX, 	"BAT1" },
+	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1" },
 	{ datetime, 		PREFIX 		RED 		"%15s" 			"  ", 		"%b %d (%a) %T" },
 };
 
