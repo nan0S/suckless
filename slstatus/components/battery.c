@@ -52,6 +52,9 @@
 		} map[] = {
 			{ "Charging",    "+" },
 			{ "Discharging", "-" },
+			{ "Full",        "" },
+			// dumb fix of small delay - usually after plug it is unknown for ~2s (maybe remove)
+			{ "Unknown",     "+" }, 
 		};
 		size_t i;
 		char path[PATH_MAX], state[12];

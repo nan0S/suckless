@@ -66,15 +66,28 @@ static const char unknown_str[] = "...";
 static const char eth_dev[] = "enp4s0";
 static const char wifi_dev[] = "wlp3s0";
 
+#define RESET "^c#FFFFFF^"
+#define LIGHT_BLUE "^c#46CDD0^"
+#define BLUE "^c#46A6D0^"
+#define GREEN "^c#3599A0^"
+#define YELLOW "^c#F4DFA0^"
+#define ORANGE "^c#F39C7B^"
+#define RED "^c#F04250^"
+#define PREFIX "| "
+#define SUFFIX " " RESET
+
 static const struct arg args[] = {
-	/* function 	format	argument */
-	{ ipv4, "  ^c#46CDD0^ETH %s ^c#FFFFFF^| ", eth_dev },
-	{ wifi_essid, "^c#46A6D0^WIFI %3s ", wifi_dev },
-	{ wifi_perc, "%2s%% ^c#FFFFFF^| ", wifi_dev },
-	{ run_command, "^c#3599A0^VOL %4s%% ^c#FFFFFF^| ", "volctl --get" },
-	{ cpu_perc, "^c#F4DFA0^CPU %2s%% ^c#FFFFFF^| ", NULL  },
-	{ ram_perc, "^c#F4DFA0^RAM %2s%% ^c#FFFFFF^| ", NULL  },
-	{ battery_perc, "^c#F39C7B^BAT %2s%% ^c#FFFFFF^| ", "BAT0" },
-	{ datetime, "^c#F04250^%15s  ", "%b %d (%a) %T" },
+	/* function 		prefix 		color 		content 		suffix 		argument */
+	{ ipv4, 			"  " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev },
+	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %3s" 		SUFFIX, 	wifi_dev },
+	{ wifi_perc, 					BLUE		"%2s%%" 		SUFFIX, 	wifi_dev },
+	{ run_command, 		PREFIX 		GREEN 		"VOL %3s%%" 	SUFFIX, 	"volctl --get" },
+	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL },
+	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL },
+	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0"},
+	{ battery_perc, 							"%2s%%" 		"/", 		"BAT0" },
+	{ battery_state, 							"%s", 						"BAT1"},
+	{ battery_perc, 							"%2s%%" 		SUFFIX, 	"BAT1" },
+	{ datetime, 		PREFIX 		RED 		"%15s" 			"  ", 		"%b %d (%a) %T" },
 };
 
