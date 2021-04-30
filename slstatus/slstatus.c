@@ -18,6 +18,7 @@ struct arg {
 	const long interval;
 	char* buf;
 	struct timespec last_time;
+	int failures;
 };
 
 char buf[1024];
@@ -92,6 +93,8 @@ prepare_bar()
 		}
 		else
 			args[i].buf = NULL;
+
+		args[i].failures = MAX_FAILURES + 1;
 	}
 }
 
@@ -102,19 +105,31 @@ update_bar()
 	status[0] = '\0';
 	for (i = len = 0; i < LEN(args); i++) {
 		if (should_update(&args[i])) {
-			if (!(res = args[i].func(args[i].args)))
+			if (!(res = args[i].func(args[i].args))) {
+				args[i].failures++;
 				res = unknown_str;
-			else if (args[i].buf)
-				strncpy(args[i].buf, res, COMMAND_MAXLEN);
+			}
+			else {
+				args[i].failures = 0;
+				if (args[i].buf)
+					strncpy(args[i].buf, res, COMMAND_MAXLEN);
+			}
 		}
 		else if (!(res = args[i].buf))
 			res = unknown_str;
-		if ((ret = esnprintf(status + len, sizeof(status) - len,
-						args[i].fmt, res)) < 0) {
-			break;
+
+		if (args[i].failures <= MAX_FAILURES) {
+			if ((ret = esnprintf(status + len, sizeof(status) - len,
+							args[i].fmt, res)) < 0) {
+				break;
+			}
+			len += ret;
 		}
-		len += ret;
 	}
+
+	// ugly hack
+	if (status[0] == '|')
+		memmove(status, status + 1, sizeof(status));
 
 	if (sflag) {
 		puts(status);

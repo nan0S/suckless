@@ -11,6 +11,9 @@ static const char unknown_str[] = "..";
 #define MAXLEN 2048
 /* maximum output string of single command/function */
 #define COMMAND_MAXLEN 128
+/* maximum number of failures to print output */
+#define MAX_FAILURES 10
+
 
 /*
  * function            description                     argument (example)
@@ -77,20 +80,22 @@ static const char wifi_dev[] = "wlp3s0";
 #define RED 			"^c#F04250^"
 #define PREFIX 			"| "
 #define SUFFIX 			" " RESET
+#define S 				*1000
+#define MS 				*1
 
 static struct arg args[] = {
 	/* function 		prefix 		color 		content 		suffix 		argument 				interval*/
-	{ ipv4, 			" " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				0 },
-	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				0 },
-	{ wifi_perc, 					BLUE		"%2s%%" 		SUFFIX, 	wifi_dev, 				0 },
-	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1000 },
+	{ ipv4, 			" " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				1 S },
+	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				1 S },
+	{ wifi_perc, 					BLUE		"%3s%%" 		SUFFIX, 	wifi_dev, 				1 S },
+	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1 S },
 	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get", 		0 },
-	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					0 },
-	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					0 },
-	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0", 				0 },
-	{ battery_perc, 							"%s%%" 			"/", 		"BAT0", 				0 },
-	{ battery_state, 							"%s", 						"BAT1", 				0 },
-	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1", 				0 },
-	{ datetime, 		PREFIX 		RED 		"%s" 			"  ", 		"%b %d (%a) %T", 		0 },
+	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					1 S },
+	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					1 S },
+	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0", 				15 S },
+	{ battery_perc, 							"%s%%" 			"/", 		"BAT0", 				15 S },
+	{ battery_state, 							"%s", 						"BAT1", 				15 S },
+	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1", 				15 S },
+	{ datetime, 		PREFIX 		RED 		"%s" 			SUFFIX, 	"%b %d (%a) %T", 		100 MS},
 };
 
