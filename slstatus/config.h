@@ -14,7 +14,6 @@ static const char unknown_str[] = "..";
 /* maximum number of failures to print output */
 #define MAX_FAILURES 10
 
-
 /*
  * function            description                     argument (example)
  *
