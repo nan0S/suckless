@@ -5,10 +5,12 @@ const unsigned int interval = 1000;
 
 /* text to show if no value can be retrieved */
 // static const char unknown_str[] = "n/a";
-static const char unknown_str[] = "...";
+static const char unknown_str[] = "..";
 
 /* maximum output string length */
 #define MAXLEN 2048
+/* maximum output string of single command/function */
+#define COMMAND_MAXLEN 128
 
 /*
  * function            description                     argument (example)
@@ -63,31 +65,32 @@ static const char unknown_str[] = "...";
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  */
 
-static const char eth_dev[] = "enp4s0";
+static const char eth_dev[] = "enp0s25";
 static const char wifi_dev[] = "wlp3s0";
 
-#define RESET "^c#FFFFFF^"
-#define LIGHT_BLUE "^c#46CDD0^"
-#define BLUE "^c#46A6D0^"
-#define GREEN "^c#3599A0^"
-#define YELLOW "^c#F4DFA0^"
-#define ORANGE "^c#F39C7B^"
-#define RED "^c#F04250^"
-#define PREFIX "| "
-#define SUFFIX " " RESET
+#define RESET 			"^c#FFFFFF^"
+#define LIGHT_BLUE 		"^c#46CDD0^"
+#define BLUE 			"^c#46A6D0^"
+#define GREEN 			"^c#3599A0^"
+#define YELLOW 			"^c#F4DFA0^"
+#define ORANGE 			"^c#F39C7B^"
+#define RED 			"^c#F04250^"
+#define PREFIX 			"| "
+#define SUFFIX 			" " RESET
 
-static const struct arg args[] = {
-	/* function 		prefix 		color 		content 		suffix 		argument */
-	{ ipv4, 			"  " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev },
-	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %3s" 		SUFFIX, 	wifi_dev },
-	{ wifi_perc, 					BLUE		"%2s%%" 		SUFFIX, 	wifi_dev },
-	{ run_command, 		PREFIX 		GREEN 		"VOL %3s%%" 	SUFFIX, 	"volctl --get" },
-	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL },
-	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL },
-	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0"},
-	{ battery_perc, 							"%s%%" 			"/", 		"BAT0" },
-	{ battery_state, 							"%s", 						"BAT1"},
-	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1" },
-	{ datetime, 		PREFIX 		RED 		"%15s" 			"  ", 		"%b %d (%a) %T" },
+static struct arg args[] = {
+	/* function 		prefix 		color 		content 		suffix 		argument 				interval*/
+	{ ipv4, 			" " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				0 },
+	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				0 },
+	{ wifi_perc, 					BLUE		"%2s%%" 		SUFFIX, 	wifi_dev, 				0 },
+	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1000 },
+	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get", 		0 },
+	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					0 },
+	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					0 },
+	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0", 				0 },
+	{ battery_perc, 							"%s%%" 			"/", 		"BAT0", 				0 },
+	{ battery_state, 							"%s", 						"BAT1", 				0 },
+	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1", 				0 },
+	{ datetime, 		PREFIX 		RED 		"%s" 			"  ", 		"%b %d (%a) %T", 		0 },
 };
 

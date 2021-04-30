@@ -15,6 +15,9 @@ struct arg {
 	const char *(*func)();
 	const char *fmt;
 	const char *args;
+	const long interval;
+	char* buf;
+	struct timespec last_time;
 };
 
 char buf[1024];
@@ -52,9 +55,45 @@ refresh(const int signo)
 }
 
 static char status[MAXLEN];
+static char res_buf[MAXLEN];
 static size_t i, len;
 static int sflag, ret;
 const char* res;
+
+static int
+should_update(struct arg* arg) {
+	if (arg->interval == 0)
+		return 1;
+
+	struct timespec diff, now;
+	long ms;
+
+	clock_gettime(CLOCK_MONOTONIC, &now);
+	difftimespec(&diff, &now, &arg->last_time);
+	ms = diff.tv_sec * 1000 + diff.tv_nsec / 1e6;
+	
+	if (ms < arg->interval)
+		return 0;
+
+	arg->last_time = now;
+	return 1;
+}
+
+static void
+prepare_bar()
+{
+	char* cur = res_buf;
+	char* end = res_buf + sizeof(res_buf);
+
+	for (i = 0; i < LEN(args); i++) {
+		if (cur + COMMAND_MAXLEN <= end && args[i].interval > 0) {
+			args[i].buf = cur;
+			cur += COMMAND_MAXLEN;
+		}
+		else
+			args[i].buf = NULL;
+	}
+}
 
 static void
 update_bar()
@@ -62,9 +101,14 @@ update_bar()
 	size_t len;
 	status[0] = '\0';
 	for (i = len = 0; i < LEN(args); i++) {
-		if (!(res = args[i].func(args[i].args))) {
-			res = unknown_str;
+		if (should_update(&args[i])) {
+			if (!(res = args[i].func(args[i].args)))
+				res = unknown_str;
+			else if (args[i].buf)
+				strncpy(args[i].buf, res, COMMAND_MAXLEN);
 		}
+		else if (!(res = args[i].buf))
+			res = unknown_str;
 		if ((ret = esnprintf(status + len, sizeof(status) - len,
 						args[i].fmt, res)) < 0) {
 			break;
@@ -117,6 +161,8 @@ main(int argc, char *argv[])
 	if (!sflag && !(dpy = XOpenDisplay(NULL))) {
 		die("XOpenDisplay: Failed to open display");
 	}
+
+	prepare_bar();
 
 	while (!done) {
 		if (clock_gettime(CLOCK_MONOTONIC, &start) < 0) {
