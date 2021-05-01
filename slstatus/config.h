@@ -71,6 +71,7 @@ static const char eth_dev[] = "enp0s25";
 static const char wifi_dev[] = "wlp3s0";
 
 #define RESET 			"^c#FFFFFF^"
+#define VIOLET 			"^c#7A62DE^"
 #define LIGHT_BLUE 		"^c#46CDD0^"
 #define BLUE 			"^c#46A6D0^"
 #define GREEN 			"^c#3599A0^"
@@ -84,7 +85,8 @@ static const char wifi_dev[] = "wlp3s0";
 
 static struct arg args[] = {
 	/* function 		prefix 		color 		content 		suffix 		argument 				interval*/
-	{ ipv4, 			" " 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				1 S },
+	{ run_command, 		" " 		VIOLET 		"Mail: %s" 		SUFFIX, 	"new-mails", 			1 S },
+	{ ipv4, 			PREFIX 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				1 S },
 	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				1 S },
 	{ wifi_perc, 					BLUE		"%3s%%" 		SUFFIX, 	wifi_dev, 				1 S },
 	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1 S },

@@ -109,11 +109,11 @@ update_bar()
 				args[i].failures++;
 				res = unknown_str;
 			}
-			else {
+			else
 				args[i].failures = 0;
-				if (args[i].buf)
-					strncpy(args[i].buf, res, COMMAND_MAXLEN);
-			}
+
+			if (args[i].buf)
+				strncpy(args[i].buf, res, COMMAND_MAXLEN);
 		}
 		else if (!(res = args[i].buf))
 			res = unknown_str;
