@@ -163,6 +163,8 @@ static Key keys[] = {
     { MODKEY,                       XK_slash,       spawn,          SHCMD("muctl toggle") },
     { MODKEY|ShiftMask,             XK_comma,       spawn,          SHCMD("muctl seek -5") },
     { MODKEY|ShiftMask,             XK_period,      spawn,          SHCMD("muctl seek +5") },
+    { MODKEY|ShiftMask,             XK_semicolon,   spawn,          SHCMD("muctl seek 0%") },
+    { MODKEY|ShiftMask,             XK_slash,       spawn,          SHCMD("muctl stop") },
     { MODKEY,                       XK_bracketleft, spawn,          SHCMD("muctl current") },
     { MODKEY,                       XK_bracketright,spawn,          SHCMD("muctl queued") },
     { MODKEY,                       XK_semicolon,   spawn,          SHCMD("muctl repeat") },
