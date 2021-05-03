@@ -91,6 +91,7 @@ static struct arg args[] = {
 	{ wifi_perc, 					BLUE		"%3s%%" 		SUFFIX, 	wifi_dev, 				1 S },
 	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1 S },
 	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get", 		0 },
+	{ run_command, 		PREFIX 		GREEN		"%s" 			SUFFIX, 	"muctl time", 			100 MS },
 	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					1 S },
 	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					1 S },
 	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0", 				15 S },
