@@ -90,6 +90,7 @@ static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
 static const char *terminatecmd[] = { "shutdown", "now", NULL };
 static const char *restartcmd[] = { "shutdown", "-r", "now", NULL };
 static const char *msteamscmd[] = { "teams", NULL };
+static const char *fbcmd[] = { BROWSER , "facebook.com", NULL };
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
@@ -108,6 +109,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_t,           spawn,          {.v = terminatecmd } },
     { MODKEY|ShiftMask,             XK_r,           spawn,          {.v = restartcmd } },
     { MODKEY|ShiftMask,             XK_v,           spawn,          {.v = msteamscmd } },
+    { MODKEY|ShiftMask,             XK_g,           spawn,          {.v = fbcmd } },
     { MODKEY,                       XK_x,           spawn,          {.v = xkillcmd } },
     { MODKEY|ShiftMask,             XK_m,           spawn,          SHCMD(TERMINAL " -e ncmpcpp") },
     { MODKEY|ShiftMask,             XK_e,           spawn,          SHCMD(TERMINAL " -e neomutt") },
