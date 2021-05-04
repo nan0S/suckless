@@ -83,7 +83,6 @@ static const char *trackpointcmd[] = { "trackpoint-toggle", NULL };
 /* custom program bindings */
 static const char *xkillcmd[] = { "xkill", NULL };
 static const char *bluetoothcmd[] = { "blueman-manager", NULL };
-static const char *spotifycmd[] = { "spotify", NULL };
 static const char *discordcmd[] = { "discord", NULL };
 static const char *pavucontrolcmd[] = { "pavucontrol", NULL };
 static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
@@ -103,7 +102,6 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_Return,      spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_c,           spawn,          {.v = browsercmd } },
     { MODKEY|ShiftMask,             XK_b,           spawn,          {.v = bluetoothcmd } },
-    { MODKEY|ShiftMask,             XK_s,           spawn,          {.v = spotifycmd } },
     { MODKEY|ShiftMask,             XK_d,           spawn,          {.v = discordcmd } },
     { MODKEY|ShiftMask,             XK_p,           spawn,          {.v = pavucontrolcmd } },
     { MODKEY|ShiftMask,             XK_t,           spawn,          {.v = terminatecmd } },
@@ -115,6 +113,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_e,           spawn,          SHCMD(TERMINAL " -e neomutt") },
     { MODKEY|ShiftMask,             XK_n,           spawn,          SHCMD(TERMINAL " -e bc -lq") },
     { MODKEY|ShiftMask,             XK_u,           spawn,          SHCMD(TERMINAL " -e top") },
+    { MODKEY|ShiftMask,             XK_s,           spawn,          SHCMD(TERMINAL " -e spt") },
     { 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_grave,       togglescratch,  {.v = scratchpadcmd } },
     { MODKEY,                       XK_b,           togglebar,      {0} },
