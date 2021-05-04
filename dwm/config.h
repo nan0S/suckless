@@ -113,7 +113,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_e,           spawn,          SHCMD(TERMINAL " -e neomutt") },
     { MODKEY|ShiftMask,             XK_n,           spawn,          SHCMD(TERMINAL " -e bc -lq") },
     { MODKEY|ShiftMask,             XK_u,           spawn,          SHCMD(TERMINAL " -e top") },
-    { MODKEY|ShiftMask,             XK_s,           spawn,          SHCMD(TERMINAL " -e spt") },
+    { MODKEY|ShiftMask,             XK_s,           spawn,          SHCMD(TERMINAL " -e pgrep spotifyd || spotifyd; " TERMINAL " -e spt") },
     { 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_grave,       togglescratch,  {.v = scratchpadcmd } },
     { MODKEY,                       XK_b,           togglebar,      {0} },
