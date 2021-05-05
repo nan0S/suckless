@@ -93,6 +93,22 @@ static const char *fbcmd[] = { BROWSER , "facebook.com", NULL };
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
+/* music */
+static const char *musicprevcmd[] = { "muctl", "prev", NULL };
+static const char *musicnextcmd[] = { "muctl", "next", NULL };
+static const char *musictogglecmd[] = { "muctl", "toggle", NULL };
+static const char *musicseekbcmd[] = { "muctl", "seek", "-5", NULL };
+static const char *musicseekfcmd[] = { "muctl", "seek", "+5", NULL };
+static const char *musicseek0cmd[] = { "muctl", "seek", "0%", NULL };
+static const char *musicstopcmd[] = { "muctl", "stop", NULL };
+static const char *musicshufflecmd[] = { "muctl", "shuffle", NULL };
+static const char *musiccurrentcmd[] = { "muctl", "current", NULL };
+static const char *musicqueuedcmd[] = { "muctl", "queued", NULL };
+static const char *musicrepeatcmd[] = { "muctl", "repeat", NULL };
+static const char *musicrandomcmd[] = { "muctl", "random", NULL };
+static const char *musicsinglecmd[] = { "muctl", "single", NULL };
+static const char *musicconsumecmd[] = { "muctl", "consume", NULL };
+static const char *musicinfocmd[] = { "muctl", "info", NULL };
 
 #include <X11/XF86keysym.h>
 
@@ -159,18 +175,21 @@ static Key keys[] = {
     TAGKEYS(                        XK_9,                           8)
     { MODKEY|ShiftMask,             XK_q,           quit,           {0} },
     /* music player */
-    { MODKEY,                       XK_comma,       spawn,          SHCMD("muctl prev") },
-    { MODKEY,                       XK_period,      spawn,          SHCMD("muctl next") },
-    { MODKEY,                       XK_slash,       spawn,          SHCMD("muctl toggle") },
-    { MODKEY|ShiftMask,             XK_comma,       spawn,          SHCMD("muctl seek -5") },
-    { MODKEY|ShiftMask,             XK_period,      spawn,          SHCMD("muctl seek +5") },
-    { MODKEY|ShiftMask,             XK_semicolon,   spawn,          SHCMD("muctl seek 0%") },
-    { MODKEY|ShiftMask,             XK_slash,       spawn,          SHCMD("muctl stop") },
-    { MODKEY,                       XK_bracketleft, spawn,          SHCMD("muctl current") },
-    { MODKEY,                       XK_bracketright,spawn,          SHCMD("muctl queued") },
-    { MODKEY,                       XK_semicolon,   spawn,          SHCMD("muctl repeat") },
-    { MODKEY,                       XK_apostrophe,  spawn,          SHCMD("muctl random") },
-    { MODKEY,                       XK_backslash,   spawn,          SHCMD("muctl shuffle") },
+    { MODKEY,                       XK_comma,       spawn,          { .v = musicprevcmd } },
+    { MODKEY,                       XK_period,      spawn,          { .v = musicnextcmd } },
+    { MODKEY,                       XK_slash,       spawn,          { .v = musictogglecmd } },
+    { MODKEY|ShiftMask,             XK_comma,       spawn,          { .v = musicseekbcmd } },
+    { MODKEY|ShiftMask,             XK_period,      spawn,          { .v = musicseekfcmd } },
+    { MODKEY|ShiftMask,             XK_semicolon,   spawn,          { .v = musicseek0cmd } },
+    { MODKEY|ShiftMask,             XK_slash,       spawn,          { .v = musicstopcmd } },
+    { MODKEY|ShiftMask,             XK_apostrophe,  spawn,          { .v = musicshufflecmd } },
+    { MODKEY,                       XK_bracketleft, spawn,          { .v = musiccurrentcmd } },
+    { MODKEY,                       XK_bracketright,spawn,          { .v = musicqueuedcmd } },
+    { MODKEY,                       XK_semicolon,   spawn,          { .v = musicrepeatcmd } },
+    { MODKEY,                       XK_apostrophe,  spawn,          { .v = musicrandomcmd } },
+    { MODKEY,                       XK_backslash,   spawn,          { .v = musicsinglecmd } },
+    { MODKEY|ShiftMask,             XK_backslash,   spawn,          { .v = musicconsumecmd } },
+    { MODKEY|ShiftMask,             XK_i,           spawn,          { .v = musicinfocmd } },
     /* volume control */
     { 0,          XF86XK_AudioRaiseVolume,          spawn,          {.v  =  volupcmd           }  },
     { 0,          XF86XK_AudioMute,                 spawn,          {.v  =  voltogglecmd       }  },
