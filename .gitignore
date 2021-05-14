@@ -6,11 +6,8 @@
 compile_commands.json
 nohup.out
 
-dmenu/dmenu
-dmenu/stest
-
-dwm/dwm
-
-slstatus/slstatus
-
-st/st
+src/*/dmenu
+src/*/stest
+src/*/dwm
+src/*/slstatus
+src/*/st

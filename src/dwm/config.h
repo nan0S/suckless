@@ -89,7 +89,8 @@ static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
 static const char *terminatecmd[] = { "shutdown", "now", NULL };
 static const char *restartcmd[] = { "shutdown", "-r", "now", NULL };
 static const char *msteamscmd[] = { "teams", NULL };
-static const char *fbcmd[] = { BROWSER , "facebook.com", NULL };
+static const char *fbcmd[] = { BROWSER, "--new-window", "facebook.com", NULL };
+static const char *altbrowsercmd[] = { "qutebrowser", NULL };
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
@@ -124,11 +125,12 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_r,           spawn,          {.v = restartcmd } },
     { MODKEY|ShiftMask,             XK_v,           spawn,          {.v = msteamscmd } },
     { MODKEY|ShiftMask,             XK_g,           spawn,          {.v = fbcmd } },
+    { MODKEY|ShiftMask,             XK_u,           spawn,          {.v = altbrowsercmd } },
     { MODKEY,                       XK_x,           spawn,          {.v = xkillcmd } },
     { MODKEY|ShiftMask,             XK_m,           spawn,          SHCMD(TERMINAL " -e ncmpcpp") },
     { MODKEY|ShiftMask,             XK_e,           spawn,          SHCMD("run mailsync; " TERMINAL " -e neomutt") },
     { MODKEY|ShiftMask,             XK_n,           spawn,          SHCMD(TERMINAL " -e bc -lq") },
-    { MODKEY|ShiftMask,             XK_u,           spawn,          SHCMD(TERMINAL " -e top") },
+    { MODKEY|ShiftMask,             XK_y,           spawn,          SHCMD(TERMINAL " -e top") },
     { MODKEY|ShiftMask,             XK_w,           spawn,          SHCMD(TERMINAL " -e pgrep spotifyd || spotifyd; " TERMINAL " -e spt") },
     { 0,                            XK_Print,       spawn,          {.v = screenshotcmd } },
     { MODKEY,                       XK_grave,       togglescratch,  {.v = scratchpadcmd } },
