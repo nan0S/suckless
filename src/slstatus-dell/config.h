@@ -90,7 +90,7 @@ static struct arg args[] = {
 	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				1 S },
 	{ wifi_perc, 					BLUE		"%2s%%" 		SUFFIX, 	wifi_dev, 				1 S },
 	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1 S },
-	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get", 		0 },
+	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get-volume", 	0 },
 	{ run_command, 		PREFIX 		GREEN		"%s" 			SUFFIX, 	"muctl time", 			100 MS },
 	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					1 S },
 	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					1 S },
