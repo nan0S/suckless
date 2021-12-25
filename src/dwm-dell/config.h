@@ -90,6 +90,7 @@ static const char *restartcmd[] = { "shutdown", "-r", "now", NULL };
 static const char *msteamscmd[] = { "teams", NULL };
 static const char *fbcmd[] = { BROWSER, "--new-window", "facebook.com", NULL };
 static const char *altbrowsercmd[] = { "qutebrowser", NULL };
+static const char *spotifycmd[] = { "spotify", "--no-zygote", NULL };
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
@@ -125,6 +126,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_v,           spawn,          {.v = msteamscmd } },
     { MODKEY|ShiftMask,             XK_g,           spawn,          {.v = fbcmd } },
     { MODKEY|ShiftMask,             XK_u,           spawn,          {.v = altbrowsercmd } },
+    { MODKEY|ShiftMask,             XK_s,           spawn,          {.v = spotifycmd } },
     { MODKEY,                       XK_x,           spawn,          {.v = xkillcmd } },
     { MODKEY|ShiftMask,             XK_m,           spawn,          SHCMD(TERMINAL " -e ncmpcpp") },
     { MODKEY|ShiftMask,             XK_e,           spawn,          SHCMD("run mailsync; " TERMINAL " -e neomutt") },
