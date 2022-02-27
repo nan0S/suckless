@@ -57,7 +57,7 @@ refresh(const int signo)
 
 static char status[MAXLEN];
 static char res_buf[MAXLEN];
-static size_t i, len;
+static size_t i;
 static int sflag, ret;
 const char* res;
 
@@ -129,7 +129,7 @@ update_bar()
 
 	// ugly hack
 	if (status[0] == '|')
-		memmove(status, status + 1, sizeof(status));
+		memmove(status, status + 1, sizeof(status) - 1);
 
 	if (sflag) {
 		puts(status);
