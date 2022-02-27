@@ -199,8 +199,9 @@ static Key keys[] = {
     { 0,          XF86XK_AudioMute,                 spawn,          {.v  =  voltogglecmd       }  },
     { 0,          XF86XK_AudioLowerVolume,          spawn,          {.v  =  voldowncmd         }  },
     /*  touchpad and trackpoint */
-    { 0,          XF86XK_AudioMicMute,              spawn,          {.v  =  touchpadcmd        }  },
-    { 0,          XF86XK_Tools,                     spawn,          {.v  =  trackpointcmd      }  },
+    { 0,          XF86XK_AudioPlay,                 spawn,          {.v  =  touchpadcmd        }  }, // Dell
+    { 0,          XF86XK_AudioMicMute,              spawn,          {.v  =  touchpadcmd        }  }, // Lenovo
+    { 0,          XF86XK_Tools,                     spawn,          {.v  =  trackpointcmd      }  }, // Lenovo
     /*  brightness control */
     { 0,          XF86XK_MonBrightnessDown,         spawn,          {.v  =  brightnessdowncmd  }  },
     { 0,          XF86XK_MonBrightnessUp,           spawn,          {.v  =  brightnessupcmd    }  },
