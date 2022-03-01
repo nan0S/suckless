@@ -75,8 +75,8 @@ static const char *voldowncmd[] = { "volctl", "--decrease", NULL };
 static const char *volupcmd[] = { "volctl", "--increase", NULL };
 static const char *voltogglecmd[] = { "volctl", "--toggle", NULL };
 /* brightness controls */
-static const char *brightnessdowncmd[] = { "light", "-U", "10", NULL };
-static const char *brightnessupcmd[] = { "light", "-A", "10", NULL };
+static const char *brightnessupcmd[] = { "brightctl", "-i", NULL };
+static const char *brightnessdowncmd[] = { "brightctl", "-d", NULL };
 /* trackpoint and touchpad */ 
 static const char *touchpadcmd[] = { "touchpad-toggle", NULL };
 static const char *trackpointcmd[] = { "trackpoint-toggle", NULL };
@@ -89,7 +89,6 @@ static const char *screenshotcmd[] = { "deepin-screenshot", NULL };
 static const char *terminatecmd[] = { "shutdown", "now", NULL };
 static const char *restartcmd[] = { "shutdown", "-r", "now", NULL };
 static const char *msteamscmd[] = { "teams", NULL };
-static const char *fbcmd[] = { BROWSER, "--new-window", "facebook.com", NULL };
 static const char *altbrowsercmd[] = { "qutebrowser", NULL };
 static const char *spotifycmd[] = { "spotify", "--no-zygote", NULL };
 /* scratchpad */
@@ -125,7 +124,6 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_t,           spawn,          {.v = terminatecmd } },
     { MODKEY|ShiftMask,             XK_r,           spawn,          {.v = restartcmd } },
     { MODKEY|ShiftMask,             XK_v,           spawn,          {.v = msteamscmd } },
-    { MODKEY|ShiftMask,             XK_g,           spawn,          {.v = fbcmd } },
     { MODKEY|ShiftMask,             XK_u,           spawn,          {.v = altbrowsercmd } },
     { MODKEY|ShiftMask,             XK_s,           spawn,          {.v = spotifycmd } },
     { MODKEY,                       XK_x,           spawn,          {.v = xkillcmd } },
