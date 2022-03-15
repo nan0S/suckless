@@ -101,7 +101,7 @@ struct Client {
 	int basew, baseh, incw, inch, maxw, maxh, minw, minh;
 	int bw, oldbw;
 	unsigned int tags;
-	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isterminal, noswallow;
+	int isfixed, isfloating, isurgent, neverfocus, oldstate, isfullscreen, isterminal, noswallow, isspitting;
 	pid_t pid;
 	Client *next;
 	Client *snext;
@@ -235,6 +235,7 @@ static void showhide(Client *c);
 static void sigchld(int unused);
 static void spawn(const Arg *arg);
 static void swapfocus();
+static void swapspitting();
 static void tag(const Arg *arg);
 static void tagmon(const Arg *arg);
 static void tile(Monitor *);
@@ -486,7 +487,8 @@ attachstack(Client *c)
 void
 swallow(Client *p, Client *c)
 {
-
+	if (p->isspitting)
+		return;
 	if (c->noswallow || c->isterminal)
 		return;
 	if (c->noswallow && !swallowfloating && c->isfloating)
@@ -2065,6 +2067,14 @@ swapfocus()
 		focus(prevclient);
 		restack(prevclient->mon);
 	}
+}
+
+void
+swapspitting()
+{
+	if (!selmon->sel)
+		return;
+	selmon->sel->isspitting = !selmon->sel->isspitting;
 }
 
 void
