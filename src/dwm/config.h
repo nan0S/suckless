@@ -70,6 +70,7 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
 static const char *termcmd[]  = { TERMINAL, NULL };
 static const char *browsercmd[] = { BROWSER, NULL };
+static const char *suspendcmd[] = { "sudo", "mem-suspend", NULL };
 /* volumne controls */
 static const char *voldowncmd[] = { "volctl", "--decrease", NULL };
 static const char *volupcmd[] = { "volctl", "--increase", NULL };
@@ -176,7 +177,9 @@ static Key keys[] = {
     TAGKEYS(                        XK_7,                           6)
     TAGKEYS(                        XK_8,                           7)
     TAGKEYS(                        XK_9,                           8)
-    { MODKEY|ShiftMask,             XK_q,           quit,           {0} },
+    { MODKEY|ShiftMask,             XK_a,           quit,           {0} },
+    /* commands */
+    { MODKEY|ShiftMask,             XK_q,           spawn,          { .v = suspendcmd } },
     /* music player */
     { MODKEY,                       XK_comma,       spawn,          { .v = musicprevcmd } },
     { MODKEY,                       XK_period,      spawn,          { .v = musicnextcmd } },
