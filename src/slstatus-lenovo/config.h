@@ -70,34 +70,34 @@ static const char unknown_str[] = "..";
 static const char eth_dev[] = "enp0s25";
 static const char wifi_dev[] = "wlp3s0";
 
-#define RESET 			"^c#FFFFFF^"
-#define VIOLET 			"^c#7A62DE^"
-#define LIGHT_BLUE 		"^c#46CDD0^"
-#define BLUE 			"^c#46A6D0^"
-#define GREEN 			"^c#3599A0^"
-#define YELLOW 			"^c#F4DFA0^"
-#define ORANGE 			"^c#F39C7B^"
-#define RED 			"^c#F04250^"
-#define PREFIX 			"| "
-#define SUFFIX 			" " RESET
-#define S 				*1000
-#define MS 				*1
+#define  RESET       "^c#FFFFFF^"
+#define  VIOLET      "^c#7A62DE^"
+#define  LIGHT_BLUE  "^c#46CDD0^"
+#define  BLUE        "^c#46A6D0^"
+#define  GREEN       "^c#3599A0^"
+#define  YELLOW      "^c#F4DFA0^"
+#define  ORANGE      "^c#F39C7B^"
+#define  RED         "^c#F04250^"
+#define  PREF        "| "
+#define  SUFF        " " RESET
+#define  S           *1000
+#define  MS          *1
 
 static struct arg args[] = {
-	/* function 		prefix 		color 		content 		suffix 		argument 				interval*/
-	{ run_command, 		" " 		VIOLET 		"Mail: %s" 		SUFFIX, 	"new-mails", 			1 S },
-	{ ipv4, 			PREFIX 		LIGHT_BLUE 	"ETH %s" 		SUFFIX, 	eth_dev, 				1 S },
-	{ wifi_essid, 		PREFIX 		BLUE 		"WIFI %s" 		SUFFIX, 	wifi_dev, 				1 S },
-	{ wifi_perc, 					BLUE		"%3s%%" 		SUFFIX, 	wifi_dev, 				1 S },
-	{ run_command, 		PREFIX 		GREEN 		"%s ", 						"get-speaker-name -s", 	1 S },
-	{ run_command, 		PREFIX 		GREEN		"VOL %s%%" 		SUFFIX, 	"volctl --get-volume",  0 },
-	{ run_command, 		PREFIX 		GREEN		"%s" 			SUFFIX, 	"muctl time", 			100 MS },
-	{ cpu_perc, 		PREFIX 		YELLOW 		"CPU %2s%%" 	SUFFIX, 	NULL, 					1 S },
-	{ ram_perc, 		PREFIX 		YELLOW 		"RAM %2s%%" 	SUFFIX, 	NULL, 					1 S },
-	{ battery_state, 	PREFIX 		ORANGE 		"BAT %s", 					"BAT0", 				15 S },
-	{ battery_perc, 							"%s%%" 			"/", 		"BAT0", 				15 S },
-	{ battery_state, 							"%s", 						"BAT1", 				15 S },
-	{ battery_perc, 							"%s%%" 			SUFFIX, 	"BAT1", 				15 S },
-	{ datetime, 		PREFIX 		RED 		"%s" 			SUFFIX, 	"%b %d (%a) %T", 		100 MS},
+  /* function        format                          argument                interval */
+   { run_command,    " " VIOLET "Mail: %s" SUFF,     "new-mails",            1 S },
+   { ipv4,           PREF LIGHT_BLUE "ETH %s" SUFF,  eth_dev,                1 S },
+   { wifi_essid,     PREF BLUE "WIFI %s" SUFF,       wifi_dev,               1 S },
+   { wifi_perc,      BLUE "%3s%%" SUFF,              wifi_dev,               1 S },
+   { run_command,    PREF GREEN "%s ",               "get-speaker-name -s",  1 S },
+   { run_command,    PREF GREEN "VOL %s%%" SUFF,     "volctl --get-volume",  0 },
+   { run_command,    PREF GREEN "%s" SUFF,           "muctl time",           100 MS },
+   { cpu_perc,       PREF YELLOW "CPU %2s%%" SUFF,   NULL,                   1 S },
+   { ram_perc,       PREF YELLOW "RAM %2s%%" SUFF,   NULL,                   1 S },
+   { battery_state,  PREF ORANGE "BAT %s",           "BAT0",                 15 S },
+   { battery_perc,   "%s%%/",                        "BAT0",                 15 S },
+   { battery_state,  "%s",                           "BAT1",                 15 S },
+   { battery_perc,   "%s%%" SUFF,                    "BAT1",                 15 S },
+   { datetime,       PREF RED "%s" SUFF,             "%b %d (%a) %T",        100 MS},
+   { datetime,       PREF RED "%s" SUFF,             "%b %d (%a) %T",        100 MS},
 };
-
