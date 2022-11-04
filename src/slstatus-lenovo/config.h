@@ -99,5 +99,4 @@ static struct arg args[] = {
    { battery_state,  "%s",                           "BAT1",                 15 S },
    { battery_perc,   "%s%%" SUFF,                    "BAT1",                 15 S },
    { datetime,       PREF RED "%s" SUFF,             "%b %d (%a) %T",        100 MS},
-   { datetime,       PREF RED "%s" SUFF,             "%b %d (%a) %T",        100 MS},
 };
